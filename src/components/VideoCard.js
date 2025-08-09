@@ -1,7 +1,7 @@
 import { CheckCircle } from "@mui/icons-material";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { demoChannelTitle, demoChannelUrl, demoVideoUrl } from "../ulits/constant";
 
 const VideoCard = ({
@@ -15,11 +15,19 @@ const VideoCard = ({
     <Card sx={{ width: {  xs: '100%', sm: '358px', md: '320px' }, boxShadow: 'none', borderRadius: '0'}}>
       <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
 
-        <CardMedia
+        {/* <CardMedia
           image={snippet?.thumbnails?.high?.url}
           alt={snippet?.title}
           sx={{ width: { xs: "100%", sm: '358px', md: '320px'}, height: 180 }}
+        /> */}
+
+        <CardMedia
+          component="img"
+          src={snippet?.thumbnails?.high?.url || "fallback-image-url.jpg"}
+          alt={snippet?.title || "video thumbnail"}
+          sx={{ width: { xs: "100%", sm: '358px', md: '320px'}, height: 180 }}
         />
+
       </Link>
 
 

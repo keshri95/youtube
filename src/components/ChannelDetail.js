@@ -1,6 +1,6 @@
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { fetchFromAPI } from "../ulits/fetchFromAPI";
 import ChannelCard from "./ChannelCard";
 import Videos from "./Videos";
@@ -10,32 +10,46 @@ const ChannelDetail = () => {
   const [channelDetail, setChannelDetail] = useState(null);
   const [videos, setVideos] = useState([]);
 
-  // // console.log(channelDetail, videos);
-  // useEffect(() => {
-  //   // CHANNEL DETAILS
-  //   fetchFromAPI(`channels?part=snippet&id=${id}`).then((data) =>
-  //     setChannelDetail(data?.items[0])
-  //   );
 
-  //   // VIDEOS
-  //   fetchFromAPI(`search?channelId=${id}&part=snippet&order=date`).then(
-  //     (data) => setVideos(data?.items)
-  //   );
-  // }, [id]);
+  /*
+    useEffect(() => {
+      const fetchResults = async () => {
+        const data = await fetchFromAPI(`channels?part=snippet&id=${id}`);
 
-  useEffect(() => {
-    const fetchResults = async () => {
-      const data = await fetchFromAPI(`channels?part=snippet&id=${id}`);
+        setChannelDetail(data?.items[0]);
 
-      setChannelDetail(data?.items[0]);
+        const videosData = await fetchFromAPI(`search?channelId=${id}&part=snippet%2Cid&order=date`);
 
-      const videosData = await fetchFromAPI(`search?channelId=${id}&part=snippet%2Cid&order=date`);
+        setVideos(videosData?.items);
+      };
 
-      setVideos(videosData?.items);
-    };
+      fetchResults();
+    }, [id]);
+    */
+
+
+    useEffect(() => {
+      const fetchResults = async () => {
+        const data = await fetchFromAPI(`channels?part=snippet&id=${id}`);
+
+        if (data?.items && data.items.length > 0) {
+          setChannelDetail(data.items[0]);
+        } else {
+          setChannelDetail(null); 
+        }
+
+        const videosData = await fetchFromAPI(`search?channelId=${id}&part=snippet%2Cid&order=date`);
+
+        if (videosData?.items) {
+          setVideos(videosData.items);
+        } else {
+          setVideos([]); 
+        }
+      };
 
     fetchResults();
   }, [id]);
+
 
   return (
     <Box minHeight="95vh">

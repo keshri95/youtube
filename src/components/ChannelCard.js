@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Box, Stack } from "@mui/system";
-import { Link } from "react-router-dom";
+import { Box } from "@mui/system";
+import { Link } from "react-router";
 import { CardContent, CardMedia, Typography } from "@mui/material";
-import { demoChannelTitle, demoProfilePicture } from "../ulits/constant";
+import { demoProfilePicture } from "../ulits/constant";
 import { CheckCircle } from "@mui/icons-material";
 const ChannelCard = ({ channelDetail, marginTop }) => {
   return (

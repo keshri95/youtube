@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Videos from "./Videos";
 import { useEffect } from "react";
 import { fetchFromAPI } from "../ulits/fetchFromAPI";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
 const SearchFeed = () => {
   const [videos, setVideos] = useState([]);

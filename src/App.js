@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router";
 import { Box } from "@mui/material";
 import Navbar from "./components/Navbar";
 import VideoDetail from "./components/VideoDetail";

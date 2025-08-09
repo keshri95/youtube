@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router";
 import { fetchFromAPI } from "../ulits/fetchFromAPI";
 import Videos from "./Videos";
 
@@ -31,7 +31,7 @@ const VideoDetail = () => {
       <Stack direction={{ xs: "column", md: "row" }}>
         <Box flex={1}>
           <Box sx={{ width: "100%", position: "sticky", top: "86px" }}>
-          <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} className="react-player" controls />
+          <ReactPlayer src={`https://www.youtube.com/watch?v=${id}`} className="react-player" controls />
             <Typography color="#fff" variant="h5" fontWeight="bold" p={2}>
               {title}
             </Typography>
@@ -43,14 +43,30 @@ const VideoDetail = () => {
               py={1}
               px={2}
             >
-              <Link to={`/channel/${channelId}`}>
+              {/* <Link to={`/channel/${channelId}`}>
                 <Typography variant={{ sm: "subtilte", md: "h6" }}>
                   {channelTitle}
                   <CheckCircle
                     sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
                   />
                 </Typography>
+              </Link> */}
+
+              <Link to={`/channel/${channelId}`}>
+                <Typography 
+                  variant="subtitle1" 
+                  sx={{
+                    fontSize: { sm: "subtitle1.fontSize", md: "h6.fontSize" }, 
+                    color: "#fff"
+                  }}
+                >
+                  {channelTitle}
+                  <CheckCircle
+                    sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
+                  />
+                </Typography>
               </Link>
+
 
               <Stack direction="row" gap="20px" alignItems="center">
                 <Typography variant="body1" sx={{ opacity: 0.7 }}>
